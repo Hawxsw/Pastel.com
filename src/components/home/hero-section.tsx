@@ -82,8 +82,8 @@ export function HeroSection() {
           >
             <div className="relative float-animation">
               <Image
-                width={60} 
-                height={60}
+                width={400} 
+                height={400}
                 src="/golden-pastels.png" 
                 alt="Pastéis deliciosos" 
                 className="w-full h-auto rounded-3xl shadow-2xl"
