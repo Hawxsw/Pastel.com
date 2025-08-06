@@ -85,7 +85,7 @@ export function HeroSection() {
                 width={400} 
                 height={400}
                 src="/golden-pastels.png" 
-                alt="Pastéis deliciosos" 
+                alt="Pastéis deliciosos e crocantes" 
                 className="w-full h-auto rounded-3xl shadow-2xl"
               />
               <div className="absolute -top-4 -right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold shadow-lg">
