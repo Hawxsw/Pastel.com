@@ -9,7 +9,7 @@ import { Separator } from '@/components/ui/separator'
 import { Eye, EyeOff, Mail, Lock, LogIn } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useAuth } from '@/contexts/auth-context'
-import { useToast } from '@/hooks/use-toast'
+import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
@@ -20,7 +20,7 @@ export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   
   const { login } = useAuth()
-  const { toast } = useToast()
+  // toast do Sonner
   const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,23 +30,18 @@ export function LoginForm() {
     try {
       const success = await login(email, password)
       if (success) {
-        toast({
-          title: "Login realizado com sucesso!",
-          description: "Bem-vindo de volta!",
+        toast("Login realizado com sucesso!", {
+          description: "Bem-vindo de volta!"
         })
         router.push('/dashboard')
       } else {
-        toast({
-          title: "Erro no login",
+        toast("Erro no login", {
           description: "Email ou senha incorretos.",
-          variant: "destructive"
         })
       }
     } catch (error) {
-      toast({
-        title: "Erro no login",
+      toast("Erro no login", {
         description: "Ocorreu um erro inesperado. Tente novamente.",
-        variant: "destructive"
       })
     } finally {
       setIsLoading(false)

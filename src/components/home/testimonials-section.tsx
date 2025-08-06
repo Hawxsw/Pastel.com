@@ -70,8 +70,8 @@ export function TestimonialsSection() {
                     ))}
                   </div>
 
-                  <p className="text-gray-600 mb-6 italic">
-                    "{testimonial.comment}"
+                      <p className="text-gray-600 mb-6 italic">
+                        &quot;{testimonial.comment}&quot;
                   </p>
 
                   <div className="flex items-center">

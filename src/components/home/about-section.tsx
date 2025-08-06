@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Clock, Users, Award, Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const features = [
   {
@@ -84,9 +85,11 @@ export function AboutSection() {
             className="relative"
           >
             <div className="relative">
-              <img 
+              <Image 
                 src="/placeholder.svg?height=600&width=500" 
                 alt="Nossa cozinha tradicional" 
+                width={500}
+                height={600}
                 className="w-full h-auto rounded-3xl shadow-2xl"
               />
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
