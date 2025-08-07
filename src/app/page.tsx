@@ -8,7 +8,7 @@ import { Header } from "@/components/layout/header";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen px-2 sm:px-0 max-w-full overflow-hidden">
       <Header />
       <main>
         <HeroSection />

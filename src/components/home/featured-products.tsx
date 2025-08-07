@@ -110,8 +110,8 @@ export function FeaturedProducts() {
   }
 
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="py-10 sm:py-20 bg-white">
+      <div className="container mx-auto px-2 sm:px-4">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +126,7 @@ export function FeaturedProducts() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {featuredProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -134,25 +134,25 @@ export function FeaturedProducts() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="group hover:shadow-2xl transition-all duration-300 overflow-hidden">
+              <Card className="group hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col">
                 <div className="relative">
                   <img 
                     src={product.image || "/placeholder.svg"} 
                     alt={product.name}
-                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-4 left-4 flex gap-2">
+                  <div className="absolute top-2 left-2 flex gap-2">
                     {product.isNew && (
-                      <Badge className="bg-green-500">Novo</Badge>
+                      <Badge className="bg-green-500 text-xs sm:text-sm">Novo</Badge>
                     )}
                     {product.isPopular && (
-                      <Badge className="bg-red-500">Popular</Badge>
+                      <Badge className="bg-red-500 text-xs sm:text-sm">Popular</Badge>
                     )}
                   </div>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="absolute top-4 right-4 bg-white/80 hover:bg-white"
+                    className="absolute top-2 right-2 bg-white/80 hover:bg-white"
                     onClick={() => toggleFavorite(product.id)}
                   >
                     <Heart 
@@ -165,7 +165,7 @@ export function FeaturedProducts() {
                   </Button>
                 </div>
                 
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6 flex flex-col flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <Badge variant="outline">{product.category}</Badge>
                     <div className="flex items-center space-x-1">
@@ -174,11 +174,11 @@ export function FeaturedProducts() {
                     </div>
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                  <p className="text-gray-600 mb-4">{product.description}</p>
+                  <h3 className="text-lg sm:text-xl font-bold mb-2">{product.name}</h3>
+                  <p className="text-gray-600 mb-2 sm:mb-4 text-sm sm:text-base">{product.description}</p>
                   
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-orange-500">
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-lg sm:text-2xl font-bold text-orange-500">
                       R$ {product.price.toFixed(2)}
                     </span>
                     <Button 

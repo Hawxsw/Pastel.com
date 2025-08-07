@@ -28,9 +28,9 @@ export const Header = () => {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between h-16">
                     <Link href="/" className="flex items-center space-x-2">
-                        <div className="w-10 h-10 bg-gradient-to-r from-orage-400  rounded-full flex items-center justify-center">
+                        <div className="w-10 h-10 bg-gradient-to-r from-orange-400 to-red-500 rounded-full flex items-center justify-center">
                             <span className="text-white font-bold text-lg">P</span>
-                            <span className="font-bold text-xl gradient-text">Pastel.com</span>
+                            <span className="font-bold text-xl gradient-text hidden sm:inline">Pastel.com</span>
                         </div>
                     </Link>
                     <nav className="hidden md:flex items-center space-x-8">
@@ -48,7 +48,7 @@ export const Header = () => {
                             />
                         </div>
                     </div>
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-2 md:space-x-4">
                         {user ? (
                             <div className="hidden md:flex items-center space-x-2">
                                 <Link href="/dashboard">
@@ -88,24 +88,24 @@ export const Header = () => {
                                     <Menu className="w-5 h-5" />
                                 </Button>
                             </SheetTrigger>
-                            <SheetContent>
-                                <div className="flex flex-col space-y-4 mt-8">
-                                    <Link href="/" className="text-lg font-medium">Início</Link>
-                                    <Link href="/produtos" className="text-lg font-medium">Produtos</Link>
-                                    <Link href="/sobre" className="text-lg font-medium">Sobre</Link>
-                                    <Link href="/contato" className="text-lg font-medium">Contato</Link>
+                            <SheetContent side="left" className="w-full max-w-xs p-0 overflow-x-hidden">
+                                <div className="flex flex-col space-y-2 mt-8 px-4">
+                                    <Link href="/" className="text-lg font-medium py-2 border-b border-gray-100">Início</Link>
+                                    <Link href="/produtos" className="text-lg font-medium py-2 border-b border-gray-100">Produtos</Link>
+                                    <Link href="/sobre" className="text-lg font-medium py-2 border-b border-gray-100">Sobre</Link>
+                                    <Link href="/contato" className="text-lg font-medium py-2 border-b border-gray-100">Contato</Link>
                                     {user ? (
                                         <>
-                                            <Link href="/dashboard" className="text-lg font-medium">Dashboard</Link>
-                                            <Button onClick={logout} variant="outline">Sair</Button>
+                                            <Link href="/dashboard" className="text-lg font-medium py-2 border-b border-gray-100">Dashboard</Link>
+                                            <Button onClick={logout} variant="outline" className="w-full mt-2">Sair</Button>
                                         </>
                                     ) : (
                                         <>
                                             <Link href="/login">
-                                                <Button variant="outline" className="w-full">Entrar</Button>
+                                                <Button variant="outline" className="w-full mt-2">Entrar</Button>
                                             </Link>
                                             <Link href="/registro">
-                                                <Button className="w-full">Cadastrar</Button>
+                                                <Button className="w-full mt-2">Cadastrar</Button>
                                             </Link>
                                         </>
                                     )}

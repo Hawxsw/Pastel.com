@@ -16,8 +16,8 @@ export function HeroSection() {
         <div className="absolute bottom-32 left-1/3 w-40 h-40 bg-yellow-300 rounded-full blur-xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-20 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 py-10 sm:py-20 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
@@ -34,13 +34,13 @@ export function HeroSection() {
               <span className="ml-2 text-gray-600">Mais de 10.000 clientes satisfeitos</span>
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6">
+            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-6">
               Os Melhores
               <span className="gradient-text block">Pastéis</span>
               do Brasil
             </h1>
 
-            <p className="text-xl text-gray-600 mb-8 max-w-lg">
+            <p className="text-base sm:text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
               Sabores únicos, massa crocante e ingredientes frescos. 
               Experimente a tradição brasileira em cada mordida.
             </p>
@@ -57,7 +57,7 @@ export function HeroSection() {
               </Button>
             </div>
 
-            <div className="flex items-center justify-center lg:justify-start space-x-8 mt-12">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-8 mt-8 sm:mt-12">
               <div className="text-center">
                 <div className="text-3xl font-bold text-orange-500">50+</div>
                 <div className="text-gray-600">Sabores</div>
@@ -80,15 +80,15 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative float-animation">
+            <div className="relative float-animation flex justify-center max-w-full overflow-hidden">
               <Image
-                width={400} 
-                height={400}
-                src="/golden-pastels.png" 
-                alt="Pastéis deliciosos e crocantes" 
-                className="w-full h-auto rounded-3xl shadow-2xl"
+                width={300}
+                height={300}
+                src="/golden-pastels.png"
+                alt="Pastéis deliciosos e crocantes"
+                className="w-48 sm:w-72 lg:w-full h-auto rounded-3xl shadow-2xl max-w-full"
               />
-              <div className="absolute -top-4 -right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold shadow-lg">
+              <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full font-bold shadow-lg text-xs sm:text-base max-w-[90px] truncate">
                 Novo!
               </div>
             </div>
