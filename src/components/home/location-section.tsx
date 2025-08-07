@@ -75,7 +75,7 @@ export function LocationSection() {
                   <MapPin className="h-16 w-16 text-orange-600 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Nossa Localização</h3>
                   <p className="text-gray-600">Centro de São Paulo</p>
-                  <p className="text-sm text-gray-500 mt-2">Clique em "Como Chegar" para ver o mapa</p>
+                  <p className="text-sm text-gray-500 mt-2">Clique em &quot;Como Chegar&quot; para ver o mapa</p>
                 </div>
               </div>
             </CardContent>
