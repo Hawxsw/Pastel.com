@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { CartProvider } from '@/contexts/cart-context'
-import { AuthProvider } from '@/contexts/auth-context'
-import { Toaster } from 'sonner'
+import { CartProvider } from '@/hooks/cart-provider'
+import { Header } from '@/components/shared/header'
+import { Toaster } from '@/components/ui/sonner'
+import { Footer } from '@/components/shared/footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Pastel.com - Os Melhores Pastéis do Brasil',
-  description: 'Descubra os pastéis mais saborosos e crocantes. Entrega rápida e ingredientes frescos.',
-  keywords: 'pastel, pastelaria, comida brasileira, delivery, lanche',
+  title: 'Pastel.com - Os Melhores Salgados da Cidade',
+  description: 'Descubra os salgados mais deliciosos da cidade. Pastéis, coxinhas, risoles e muito mais!',
+    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -20,13 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={inter.className + ' overflow-x-hidden'}>
-        <AuthProvider>
-          <CartProvider>
-            {children}
-            <Toaster />
-          </CartProvider>
-        </AuthProvider>
+      <body className={inter.className}>
+        <CartProvider>
+          <Header />
+          {children}
+          <Footer />
+          <Toaster />
+        </CartProvider>
       </body>
     </html>
   )

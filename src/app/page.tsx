@@ -1,23 +1,21 @@
-import { AboutSection } from "@/components/home/about-section";
-import { ContactSection } from "@/components/home/contact-section";
+import { CategoriesSection } from "@/components/home/cotegories-section";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { HeroSection } from "@/components/home/hero-section";
+import { LocationSection } from "@/components/home/location-section";
+import { NewsletterSection } from "@/components/home/newsletter-section";
+import { PromotionsSection } from "@/components/home/promotions-section";
 import { TestimonialsSection } from "@/components/home/testimonials-section";
-import { Footer } from "@/components/layout/footer";
-import { Header } from "@/components/layout/header";
 
 export default function Home() {
   return (
-    <div className="min-h-screen px-2 sm:px-0 max-w-full overflow-hidden">
-      <Header />
-      <main>
-        <HeroSection />
-        <FeaturedProducts />
-        <AboutSection />
-        <TestimonialsSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
-  );
+    <main className="min-h-screen">
+      <HeroSection />
+      <FeaturedProducts />
+      <CategoriesSection />
+      <PromotionsSection />
+      <TestimonialsSection />
+      <LocationSection />
+      <NewsletterSection />
+    </main>
+  )
 }

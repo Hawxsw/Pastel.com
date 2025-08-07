@@ -1,10 +1,12 @@
 "use client"
 
-import { ToastActionElement, ToastProps } from "@/components/ui/toast"
 // Inspired by react-hot-toast library
 import * as React from "react"
 
-
+import type {
+  ToastActionElement,
+  ToastProps,
+} from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
@@ -37,13 +39,6 @@ type Action =
       type: ActionType["ADD_TOAST"]
       toast: ToasterToast
     }
-// Removing unused actionTypes variable
-// const actionTypes = {
-//   ADD_TOAST: "ADD_TOAST",
-//   UPDATE_TOAST: "UPDATE_TOAST",
-//   DISMISS_TOAST: "DISMISS_TOAST",
-//   REMOVE_TOAST: "REMOVE_TOAST",
-// } as const
   | {
       type: ActionType["UPDATE_TOAST"]
       toast: Partial<ToasterToast>

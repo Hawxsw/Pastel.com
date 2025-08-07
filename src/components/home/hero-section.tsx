@@ -1,96 +1,75 @@
 "use client"
 
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Star } from 'lucide-react'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-orange-300 rounded-full blur-xl"></div>
-        <div className="absolute top-40 right-32 w-24 h-24 bg-red-300 rounded-full blur-xl"></div>
-        <div className="absolute bottom-32 left-1/3 w-40 h-40 bg-yellow-300 rounded-full blur-xl"></div>
-      </div>
-
-      <div className="container mx-auto px-4 py-10 sm:py-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+    <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-orange-50 via-yellow-50 to-red-50 overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/pastelaria-pattern.png')] opacity-5" />
+      
+      <div className="container px-4 md:px-6 relative z-10">
+        <div className="flex flex-col items-center space-y-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center lg:text-left"
+            className="space-y-4"
           >
-            <div className="flex items-center justify-center lg:justify-start mb-4">
-              <div className="flex items-center space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <span className="ml-2 text-gray-600">Mais de 10.000 clientes satisfeitos</span>
+            <div className="flex items-center justify-center space-x-2 text-orange-700 mb-4">
+              <Sparkles className="h-5 w-5" />
+              <span className="text-sm font-medium">Desde 1985</span>
+              <Sparkles className="h-5 w-5" />
             </div>
-
-            <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold mb-6">
+            
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
               Os Melhores
-              <span className="gradient-text block">Pastéis</span>
-              do Brasil
+              <span className="text-orange-600 block">Salgados da Cidade</span>
             </h1>
-
-            <p className="text-base sm:text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-              Sabores únicos, massa crocante e ingredientes frescos. 
-              Experimente a tradição brasileira em cada mordida.
+            
+            <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl">
+              Descubra sabores únicos em nossa pastelaria tradicional. 
+              Pastéis crocantes, coxinhas suculentas e muito mais, feitos com amor e ingredientes frescos.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link href="/produtos">
-                <Button size="lg" className="pulse-glow group">
-                  Ver Cardápio
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </Link>
-              <Button size="lg" variant="outline">
-                Fazer Pedido
-              </Button>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-8 mt-8 sm:mt-12">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orange-500">50+</div>
-                <div className="text-gray-600">Sabores</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orange-500">30min</div>
-                <div className="text-gray-600">Entrega</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orange-500">24/7</div>
-                <div className="text-gray-600">Atendimento</div>
-              </div>
-            </div>
           </motion.div>
 
-          {/* Hero Image */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            className="flex flex-col sm:flex-row gap-4"
           >
-            <div className="relative float-animation flex justify-center max-w-full overflow-hidden">
-              <Image
-                width={300}
-                height={300}
-                src="/golden-pastels.png"
-                alt="Pastéis deliciosos e crocantes"
-                className="w-48 sm:w-72 lg:w-full h-auto rounded-3xl shadow-2xl max-w-full"
-              />
-              <div className="absolute top-2 right-2 bg-red-500 text-white px-3 py-1 rounded-full font-bold shadow-lg text-xs sm:text-base max-w-[90px] truncate">
-                Novo!
-              </div>
+            <Button asChild size="lg" className="bg-orange-600 hover:bg-orange-700">
+              <Link href="/produtos">
+                Ver Produtos
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            
+            <Button variant="outline" size="lg">
+              <Link href="/sobre">Conheça Nossa História</Link>
+            </Button>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="grid grid-cols-3 gap-8 mt-16"
+          >
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-600">38+</div>
+              <div className="text-sm text-gray-600">Anos de Tradição</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-600">50+</div>
+              <div className="text-sm text-gray-600">Tipos de Salgados</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-orange-600">1000+</div>
+              <div className="text-sm text-gray-600">Clientes Satisfeitos</div>
             </div>
           </motion.div>
         </div>
