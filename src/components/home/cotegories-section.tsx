@@ -13,28 +13,28 @@ export function CategoriesSection() {
       name: 'Pastéis',
       description: 'Crocantes e saborosos',
       count: '25+ sabores',
-      image: 'pastel dourado crocante',
+      image: '/cheese-pastel.jpeg',
       color: 'from-orange-400 to-red-400'
     },
     {
       name: 'Coxinhas',
       description: 'Tradicionais e cremosas',
       count: '12+ variedades',
-      image: 'coxinha brasileira tradicional',
+      image: '/chicken-drumstick.png',
       color: 'from-yellow-400 to-orange-400'
     },
     {
       name: 'Risoles',
       description: 'Recheios especiais',
       count: '8+ opções',
-      image: 'risole dourado recheado',
+      image: '/golden-fried-risole.jpg',
       color: 'from-orange-500 to-red-500'
     },
     {
       name: 'Empadas',
       description: 'Massa artesanal',
       count: '6+ sabores',
-      image: 'empada caseira tradicional',
+      image: '/empada.jpg',
       color: 'from-amber-400 to-orange-500'
     }
   ]
@@ -64,7 +64,7 @@ export function CategoriesSection() {
                 <CardContent className="p-0">
                   <div className={`relative h-48 bg-gradient-to-br ${category.color}`}>
                     <Image
-                      src={`/abstract-geometric-shapes.png?height=200&width=300&query=${category.image}`}
+                      src={category.image}
                       alt={category.name}
                       fill
                       className="object-cover opacity-80 group-hover:opacity-100 transition-opacity"
@@ -79,7 +79,7 @@ export function CategoriesSection() {
                     <h3 className="text-xl font-bold mb-2">{category.name}</h3>
                     <p className="text-gray-600 mb-4">{category.description}</p>
                     
-                    <Button asChild variant="outline" className="w-full group-hover:bg-orange-600 group-hover:text-white transition-colors">
+                    <Button asChild variant="outline" className="w-full group-hover:bg-orange-600 hover:bg-orange-600 group-hover:text-white transition-colors">
                       <Link href="/produtos">
                         Ver Produtos
                         <ArrowRight className="ml-2 h-4 w-4" />

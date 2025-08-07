@@ -72,9 +72,10 @@ export default function ContatoPage() {
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Localização</h3>
                 <p className="text-gray-600 text-sm">
-                  Rua das Delícias, 123<br />
-                  Centro - São Paulo, SP<br />
-                  CEP: 01234-567
+                  Rua Manoel Francisco Mello 469<br />
+                  Vila São Sebastião - Franca, SP<br />
+                  Rua São Paulo 1306<br />
+                  Vila Aparecida - Franca, SP
                 </p>
               </CardContent>
             </Card>
@@ -86,9 +87,8 @@ export default function ContatoPage() {
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Telefones</h3>
                 <p className="text-gray-600 text-sm">
-                  (11) 1234-5678<br />
-                  WhatsApp: (11) 91234-5678<br />
-                  Delivery: (11) 98765-4321
+                  (16) 99219-4491<br />
+                  WhatsApp: (16) 99219-4491<br />
                 </p>
               </CardContent>
             </Card>
@@ -100,9 +100,8 @@ export default function ContatoPage() {
                 </div>
                 <h3 className="font-semibold text-lg mb-2">Horário</h3>
                 <p className="text-gray-600 text-sm">
-                  Segunda a Sexta: 7h às 19h<br />
-                  Sábado: 7h às 18h<br />
-                  Domingo: 8h às 16h
+                  Segunda a Sexta: 9:30h às 19h<br />
+                  Sábado: 9:30h às 18h<br />
                 </p>
               </CardContent>
             </Card>

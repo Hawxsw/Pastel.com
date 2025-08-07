@@ -3,19 +3,20 @@
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Clock, Percent, Gift } from 'lucide-react'
+import { Clock, Percent, Gift, Users } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export function PromotionsSection() {
   const promotions = [
     {
-      icon: Percent,
-      title: 'Combo Família',
-      description: '10 pastéis + 5 coxinhas + 2 refrigerantes',
-      originalPrice: 'R$ 89,90',
-      salePrice: 'R$ 69,90',
-      discount: '22% OFF',
-      color: 'bg-red-500'
+      icon: Users,
+      title: 'Combo Casal',
+      description: '2 hambúrgueres + 1 guarana 1L',
+      originalPrice: 'R$ 31,00',
+      salePrice: 'R$ 24,00',
+      discount: '22,58% OFF',
+      color: 'bg-pink-500',
+      animated: true
     },
     {
       icon: Clock,
@@ -61,7 +62,16 @@ export function PromotionsSection() {
               <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300">
                 <CardContent className="p-6 text-center">
                   <div className={`w-16 h-16 ${promo.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    <promo.icon className="h-8 w-8 text-white" />
+                    {promo.animated ? (
+                      <motion.div
+                        animate={{ scale: [1, 1.15, 1] }}
+                        transition={{ repeat: Infinity, duration: 1.2 }}
+                      >
+                        <promo.icon className="h-8 w-8 text-white" />
+                      </motion.div>
+                    ) : (
+                      <promo.icon className="h-8 w-8 text-white" />
+                    )}
                   </div>
                   
                   <Badge className="mb-3 bg-white/20 text-white border-white/30">

@@ -25,8 +25,10 @@ export function LocationSection() {
                   <MapPin className="h-5 w-5 text-orange-600" />
                 </div>
                 <div>
-                  <div className="font-semibold">Endereço</div>
-                  <div className="text-gray-600">Rua das Delícias, 123 - Centro, São Paulo</div>
+                  <div className="font-semibold">Endereços</div>
+                  <div className="text-gray-600">Rua Manoel Francisco Mello 469, vila São Sebastião, Franca - SP</div>
+                  <div className="text-gray-600">Rua São Paulo 1306, vila Aparecida, Franca - SP</div>
+
                 </div>
               </div>
 
@@ -36,7 +38,7 @@ export function LocationSection() {
                 </div>
                 <div>
                   <div className="font-semibold">Horário de Funcionamento</div>
-                  <div className="text-gray-600">Seg-Sex: 7h-19h | Sáb: 7h-18h | Dom: 8h-16h</div>
+                  <div className="text-gray-600">Seg-Sex: 9:30h-19h | Sáb: 9:30h-18h</div>
                 </div>
               </div>
 
@@ -46,7 +48,7 @@ export function LocationSection() {
                 </div>
                 <div>
                   <div className="font-semibold">Telefone</div>
-                  <div className="text-gray-600">(11) 1234-5678</div>
+                  <div className="text-gray-600">+55 16 99219-4491</div>
                 </div>
               </div>
             </div>
@@ -60,7 +62,7 @@ export function LocationSection() {
               </Button>
               
               <Button variant="outline" asChild>
-                <Link href="tel:+5511123456789">
+                <Link href="tel:+5516992194491">
                   <Phone className="mr-2 h-4 w-4" />
                   Ligar Agora
                 </Link>

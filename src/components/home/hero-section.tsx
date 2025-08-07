@@ -60,7 +60,7 @@ export function HeroSection() {
             className="grid grid-cols-3 gap-8 mt-16"
           >
             <div className="text-center">
-              <div className="text-3xl font-bold text-orange-600">38+</div>
+              <div className="text-3xl font-bold text-orange-600">11+</div>
               <div className="text-sm text-gray-600">Anos de Tradição</div>
             </div>
             <div className="text-center">
