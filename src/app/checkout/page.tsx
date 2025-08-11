@@ -70,12 +70,15 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (cepData && !cepLoading) {
-      toast({
-        title: "CEP encontrado!",
-        description: "Clique em 'Aplicar' para preencher automaticamente os campos.",
-      })
+      setFormData(prev => ({
+        ...prev,
+        endereco: cepData.logradouro,
+        bairro: cepData.bairro,
+        cidade: cepData.localidade,
+        cep: cepData.cep
+      }))
     }
-  }, [cepData, cepLoading, toast])
+  }, [cepData, cepLoading])
 
   useEffect(() => {
     return () => {
@@ -141,17 +144,7 @@ export default function CheckoutPage() {
     }
   }
 
-  const applyCEPData = () => {
-    if (cepData) {
-      setFormData({
-        ...formData,
-        endereco: cepData.logradouro,
-        bairro: cepData.bairro,
-        cidade: cepData.localidade,
-        cep: cepData.cep
-      })
-    }
-  }
+
 
   const formatCEP = (value: string) => {
     const numbers = value.replace(/\D/g, '')
@@ -418,32 +411,11 @@ export default function CheckoutPage() {
                       {cepError && (
                         <p className="text-sm text-red-600 mt-1">{cepError}</p>
                       )}
-                      {cepData && (
-                        <motion.div
-                          initial={{ opacity: 0, y: -10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          className="mt-2 p-3 bg-green-50 border border-green-200 rounded-lg"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="text-sm text-green-800">
-                              <p className="font-medium">{cepData.logradouro}</p>
-                              <p>{cepData.bairro}, {cepData.localidade} - {cepData.uf}</p>
-                            </div>
-                            <Button
-                              type="button"
-                              size="sm"
-                              onClick={applyCEPData}
-                              className="bg-green-600 hover:bg-green-700 text-white"
-                            >
-                              Aplicar
-                            </Button>
-                          </div>
-                        </motion.div>
-                      )}
+                      
                     </div>
                   </div>
                   
-                                     <div className="grid md:grid-cols-3 gap-4">
+                       <div className="grid md:grid-cols-3 gap-4">
                      <div className="md:col-span-2">
                        <label className="block text-sm font-medium text-gray-700 mb-2">
                          Endereço *
