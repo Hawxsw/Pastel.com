@@ -2,100 +2,116 @@
 
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Clock, Percent, Gift, Users } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Clock, Gift, Users } from 'lucide-react'
+import { motion, Variants } from 'framer-motion'
+
+const promotions = [
+  {
+    icon: Users,
+    title: 'Combo Casal',
+    description: '2 pastéis + 1 porção de fritas + 2 refrigerantes.',
+    discount: '20% OFF',
+  },
+  {
+    icon: Clock,
+    title: 'Happy Hour do Pastel',
+    description: 'Segunda a Sexta, das 17h às 19h, pastéis com preços especiais.',
+    discount: 'Até 30%',
+  },
+  {
+    icon: Gift,
+    title: 'Cupom de Boas-Vindas',
+    description: 'Use o cupom BEMVINDO25 na sua primeira compra online.',
+    discount: '25% OFF',
+  },
+]
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+}
 
 export function PromotionsSection() {
-  const promotions = [
-    {
-      icon: Users,
-      title: 'Combo Casal',
-      description: '2 hambúrgueres + 1 guarana 1L',
-      originalPrice: 'R$ 31,00',
-      salePrice: 'R$ 24,00',
-      discount: '22,58% OFF',
-      color: 'bg-pink-500',
-      animated: true
-    },
-    {
-      icon: Clock,
-      title: 'Happy Hour',
-      description: 'Segunda a Sexta das 15h às 17h',
-      originalPrice: 'R$ 8,50',
-      salePrice: 'R$ 6,90',
-      discount: 'Pastéis',
-      color: 'bg-orange-500'
-    },
-    {
-      icon: Gift,
-      title: 'Primeira Compra',
-      description: 'Ganhe 20% de desconto na primeira compra online',
-      originalPrice: '',
-      salePrice: '20% OFF',
-      discount: 'Cupom: BEMVINDO',
-      color: 'bg-green-500'
-    }
-  ]
-
   return (
-    <section className="py-16 bg-gradient-to-r from-orange-600 to-red-600 text-white">
-      <div className="container px-4 md:px-6">
-        <div className="text-center mb-12">
+    <section className="py-20 bg-orange-50/50 text-gray-800 overflow-hidden">
+      <div className="container px-4 md:px-6 mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
             Promoções Especiais
           </h2>
-          <p className="text-orange-100 max-w-2xl mx-auto text-lg">
-            Aproveite nossas ofertas imperdíveis e economize nos seus salgados favoritos
+          <p className="text-gray-600 max-w-2xl mx-auto md:text-lg">
+            Aproveite nossas ofertas imperdíveis e economize nos seus salgados
+            favoritos.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {promotions.map((promo, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300">
-                <CardContent className="p-6 text-center">
-                  <div className={`w-16 h-16 ${promo.color} rounded-full flex items-center justify-center mx-auto mb-4`}>
-                    {promo.animated ? (
-                      <motion.div
-                        animate={{ scale: [1, 1.15, 1] }}
-                        transition={{ repeat: Infinity, duration: 1.2 }}
-                      >
-                        <promo.icon className="h-8 w-8 text-white" />
-                      </motion.div>
-                    ) : (
-                      <promo.icon className="h-8 w-8 text-white" />
-                    )}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {promotions.map((promo) => (
+            <motion.div key={promo.title} variants={itemVariants}>
+              <Card className="group relative w-full h-full flex flex-col overflow-hidden rounded-2xl bg-white border border-gray-200/80 transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+                <div className="absolute top-0 right-0 overflow-hidden w-28 h-28">
+                  <div className="absolute top-0 left-0 w-2 h-2 bg-orange-500 shadow-lg shadow-orange-500/50"></div>
+                  <div className="absolute bottom-0 right-0 w-2 h-2 bg-orange-500 shadow-lg shadow-orange-500/50"></div>
+                  <div className="w-40 h-10 bg-orange-500 absolute top-7 -right-10 transform rotate-45 text-center flex items-center justify-center shadow-lg shadow-orange-500/50">
+                    <span className="text-white font-bold text-sm">
+                      {promo.discount}
+                    </span>
                   </div>
-                  
-                  <Badge className="mb-3 bg-white/20 text-white border-white/30">
-                    {promo.discount}
-                  </Badge>
-                  
-                  <h3 className="text-xl font-bold mb-2">{promo.title}</h3>
-                  <p className="text-orange-100 mb-4 text-sm">{promo.description}</p>
-                  
-                  <div className="mb-4">
-                    {promo.originalPrice && (
-                      <div className="text-orange-200 line-through text-sm">{promo.originalPrice}</div>
-                    )}
-                    <div className="text-2xl font-bold">{promo.salePrice}</div>
-                  </div>
-                  
-                  <Button className="w-full bg-white text-orange-600 hover:bg-orange-50">
+                </div>
+
+                <CardContent className="p-8 flex flex-col flex-grow items-center text-center">
+                  <motion.div
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{
+                      repeat: Infinity,
+                      duration: 2,
+                      ease: 'easeInOut',
+                      delay: Math.random() * 0.5,
+                    }}
+                    className="mb-6 w-20 h-20 rounded-full flex items-center justify-center bg-orange-100/80 border border-orange-200/80 shadow-inner"
+                  >
+                    <promo.icon className="h-10 w-10 text-orange-500" />
+                  </motion.div>
+
+                  <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                    {promo.title}
+                  </h3>
+                  <p className="text-gray-600 mb-6 flex-grow">
+                    {promo.description}
+                  </p>
+
+                  <Button className="w-full mt-auto font-bold text-white rounded-full bg-orange-500 hover:bg-orange-600 transition-all duration-300 shadow-lg shadow-orange-500/50 transform group-hover:scale-105">
                     Aproveitar Oferta
                   </Button>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

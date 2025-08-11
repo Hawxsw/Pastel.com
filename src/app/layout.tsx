@@ -5,6 +5,7 @@ import { CartProvider } from '@/hooks/cart-provider'
 import { Header } from '@/components/shared/header'
 import { Toaster } from '@/components/ui/sonner'
 import { Footer } from '@/components/shared/footer'
+import { PageTransition } from '@/components/ui/page-transition'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,7 +25,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <CartProvider>
           <Header />
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
           <Footer />
           <Toaster />
         </CartProvider>

@@ -122,3 +122,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Fix for Leaflet z-index issues with sticky header */
+.leaflet-container {
+  z-index: 1 !important;
+}
+
+.leaflet-control-container .leaflet-control {
+  z-index: 2 !important;
+}
+
+.leaflet-popup {
+  z-index: 3 !important;
+}
+
+/* Ensure header stays on top of everything including Leaflet */
+header[class*="sticky"] {
+  z-index: 9999 !important;
+  position: sticky !important;
+}
+
+/* Additional fix for any Leaflet elements that might have high z-index */
+.leaflet-pane,
+.leaflet-overlay-pane,
+.leaflet-marker-pane,
+.leaflet-tooltip-pane,
+.leaflet-shadow-pane {
+  z-index: 1 !important;
+}

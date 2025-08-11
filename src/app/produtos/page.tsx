@@ -10,6 +10,7 @@ import { Plus, Star, Search } from 'lucide-react'
 import Image from 'next/image'
 import { useCart } from '@/hooks/cart-provider'
 import { useToast } from '@/hooks/use-toast'
+import { AnimatedContainer } from '@/components/ui/animated-container'
 
 const allProducts = [
   {
@@ -119,114 +120,130 @@ export default function ProdutosPage() {
           return b.rating - a.rating
         case 'popular':
         default:
-          return b.popular ? 1 : -1
+          // Sort popular items first, then by name for consistency
+          if (a.popular && !b.popular) return -1;
+          if (!a.popular && b.popular) return 1;
+          return a.name.localeCompare(b.name);
       }
     })
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container px-4 md:px-6 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-            Nossos Produtos
-          </h1>
-          <p className="text-gray-600 max-w-2xl">
-            Explore nossa variedade completa de salgados artesanais, feitos fresquinhos todos os dias.
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-b from-orange-100 to-white">
+      <div className="container px-4 md:px-6 py-16 lg:py-24"> {/* Increased vertical padding */}
+        <AnimatedContainer delay={0.1} direction="up">
+          <div className="text-center mb-16"> {/* Increased bottom margin */}
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-7xl mb-6 leading-tight"> {/* Larger text, more line height */}
+              Delícias Fresquinhas, Feitas para Você!
+            </h1>
+            <p className="text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed"> {/* Larger text, wider max-width, more line height */}
+              Explore nossa variedade completa de salgados artesanais, feitos com carinho e os melhores ingredientes, fresquinhos todos os dias.
+            </p>
+          </div>
+        </AnimatedContainer>
 
         {/* Filtros */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-            <Input
-              placeholder="Buscar produtos..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
+        <AnimatedContainer delay={0.2} direction="up">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 p-5 bg-white rounded-xl shadow-lg border border-gray-100"> {/* Stronger shadow, rounded corners, border */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <Input
+                placeholder="Buscar produtos..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200"
+              />
+            </div>
+
+            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+              <SelectTrigger className="border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200">
+                <SelectValue placeholder="Categoria" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="todos">Todas as Categorias</SelectItem>
+                <SelectItem value="pasteis">Pastéis</SelectItem>
+                <SelectItem value="coxinhas">Coxinhas</SelectItem>
+                <SelectItem value="risoles">Risoles</SelectItem>
+              </SelectContent>
+            </Select>
+
+            <Select value={sortBy} onValueChange={setSortBy}>
+              <SelectTrigger className="border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200">
+                <SelectValue placeholder="Ordenar por" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="popular">Mais Populares</SelectItem>
+                <SelectItem value="price-low">Menor Preço</SelectItem>
+                <SelectItem value="price-high">Maior Preço</SelectItem>
+                <SelectItem value="rating">Melhor Avaliação</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
+        </AnimatedContainer>
 
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-            <SelectTrigger>
-              <SelectValue placeholder="Categoria" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="todos">Todas as Categorias</SelectItem>
-              <SelectItem value="pasteis">Pastéis</SelectItem>
-              <SelectItem value="coxinhas">Coxinhas</SelectItem>
-              <SelectItem value="risoles">Risoles</SelectItem>
-            </SelectContent>
-          </Select>
-
-          <Select value={sortBy} onValueChange={setSortBy}>
-            <SelectTrigger>
-              <SelectValue placeholder="Ordenar por" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="popular">Mais Populares</SelectItem>
-              <SelectItem value="price-low">Menor Preço</SelectItem>
-              <SelectItem value="price-high">Maior Preço</SelectItem>
-              <SelectItem value="rating">Melhor Avaliação</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* Grid de Produtos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <Card key={product.id} className="group hover:shadow-lg transition-all duration-300 overflow-hidden">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          {filteredProducts.map((product, index) => (
+            <AnimatedContainer 
+              key={product.id} 
+              delay={0.3 + (index * 0.1)} 
+              direction="up"
+            >
+              <Card 
+                className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-200"
+              >
               <CardContent className="p-0">
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative w-full aspect-video overflow-hidden rounded-t-xl">
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="object-cover transition-transform group-hover:scale-105"
+                    className="object-cover transition-transform group-hover:scale-110 duration-300"
                   />
                   {product.popular && (
-                    <Badge className="absolute top-2 left-2 bg-orange-600">
+                    <Badge className="absolute top-3 left-3 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md z-10">
                       Popular
                     </Badge>
                   )}
                 </div>
                 
-                <div className="p-4">
+                <div className="p-5">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-lg">{product.name}</h3>
-                    <div className="flex items-center space-x-1">
+                    <h3 className="font-bold text-xl text-gray-800">{product.name}</h3>
+                    <div className="flex items-center space-x-1 bg-yellow-50 text-yellow-700 px-2 py-1 rounded-full text-sm">
                       <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                      <span className="text-sm text-gray-600">{product.rating}</span>
+                      <span>{product.rating}</span>
                     </div>
                   </div>
                   
-                  <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
                   
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-orange-600">
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="text-3xl font-extrabold text-orange-600">
                       R$ {product.price.toFixed(2)}
                     </span>
                     
                     <Button 
-                      size="sm" 
+                      size="lg" 
                       onClick={() => handleAddToCart(product)}
-                      className="bg-orange-600 hover:bg-orange-700"
+                      className="bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center"
                     >
-                      <Plus className="h-4 w-4 mr-1" />
+                      <Plus className="h-5 w-5 mr-2" />
                       Adicionar
                     </Button>
                   </div>
                 </div>
               </CardContent>
             </Card>
+            </AnimatedContainer>
           ))}
         </div>
 
         {filteredProducts.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">Nenhum produto encontrado.</p>
-            <p className="text-gray-400">Tente ajustar os filtros de busca.</p>
-          </div>
+          <AnimatedContainer delay={0.2} direction="up">
+            <div className="text-center py-20 bg-white rounded-xl shadow-lg mt-10"> {/* Added background, shadow, and margin-top */}
+              <p className="text-gray-500 text-2xl font-semibold mb-3">Ops! Nenhum produto encontrado.</p>
+              <p className="text-gray-400 text-lg">Tente ajustar os filtros de busca ou explore outras categorias.</p>
+            </div>
+          </AnimatedContainer>
         )}
       </div>
     </div>
