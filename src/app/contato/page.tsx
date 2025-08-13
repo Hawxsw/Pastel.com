@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
-import { MapPin, Phone, Clock, Mail, MessageCircle, Instagram, Facebook, Twitter, Send, CheckCircle, Star } from 'lucide-react'
+import { MapPin, MessageCircle, Instagram, Facebook, Twitter, Send, CheckCircle, Star } from 'lucide-react'
 import { useState } from 'react'
 import { useToast } from '@/hooks/use-toast'
 import { Textarea } from '@/components/ui/textarea'
@@ -12,6 +12,24 @@ import dynamic from 'next/dynamic'
 import { locations } from '@/hooks/use-map'
 import { AnimatedCard, AnimatedIconCard } from '@/components/ui/animated-card'
 import { motion } from 'framer-motion'
+import Lottie from 'lottie-react'
+import clockAnimation from '../../../public/Lottie/clock.json'
+import phoneAnimation from '../../../public/Lottie/phone.json'
+import locationAnimation from '../../../public/Lottie/location.json'
+import mailAnimation from '../../../public/Lottie/mail.json'
+
+const ClockIcon = (props: { className?: string }) => (
+  <Lottie animationData={clockAnimation} loop={true} {...props} />
+)
+const PhoneIcon = (props: { className?: string }) => (
+  <Lottie animationData={phoneAnimation} loop={true} {...props} />
+)
+const LocationIcon = (props: { className?: string }) => (
+  <Lottie animationData={locationAnimation} loop={true} {...props} />
+)
+const MailIcon = (props: { className?: string }) => (
+  <Lottie animationData={mailAnimation} loop={true} {...props} />
+)
 
 export default function ContatoPage() {
   const [formData, setFormData] = useState({
@@ -55,7 +73,7 @@ export default function ContatoPage() {
 
   const contactInfo = [
     {
-      icon: MapPin,
+      icon: LocationIcon,
       title: "Localização",
       details: [
         "Rua Manoel Francisco Mello 469",
@@ -65,7 +83,7 @@ export default function ContatoPage() {
       ]
     },
     {
-      icon: Phone,
+      icon: PhoneIcon,
       title: "Telefones",
       details: [
         "(16) 99219-4491",
@@ -73,7 +91,7 @@ export default function ContatoPage() {
       ]
     },
     {
-      icon: Clock,
+      icon: ClockIcon,
       title: "Horário",
       details: [
         "Segunda a Sexta: 9:30h às 19h",
@@ -81,7 +99,7 @@ export default function ContatoPage() {
       ]
     },
     {
-      icon: Mail,
+      icon: MailIcon,
       title: "E-mail",
       details: [
         "contato@pastel.com",

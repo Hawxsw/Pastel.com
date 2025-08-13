@@ -1,27 +1,61 @@
+'use client'
+
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Heart, Award, Clock, Users, ChefHat, Star } from 'lucide-react'
+import { Heart, Award, Users, ChefHat, Star } from 'lucide-react'
 import Image from 'next/image'
+import Lottie from 'lottie-react'
+import clockAnimation from '../../../public/Lottie/clock.json'
+import heartAnimation from '../../../public/Lottie/heart.json'
+import usersAnimation from '../../../public/Lottie/users.json'
+
+const ClockIcon = (props: { className?: string }) => (
+  <Lottie animationData={clockAnimation} loop={true} {...props} />
+)
+const HeartIcon = (props: { className?: string }) => (
+  <Lottie animationData={heartAnimation} loop={true} {...props} />
+)
+const UsersIcon = (props: { className?: string }) => (
+  <Lottie  animationData={usersAnimation} loop={true} {...props} />
+)
+
+// Componente de medalha animada
+const AwardIcon = (props: { className?: string }) => (
+  <div className="relative group">
+    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 via-orange-400 to-yellow-400 rounded-full opacity-0 group-hover:opacity-40 blur-lg transition-all duration-700 group-hover:scale-110"></div>
+    <Award 
+      className={`${props.className} relative z-10 transition-all duration-700 group-hover:scale-110 group-hover:rotate-3`}
+      style={{
+        filter: 'drop-shadow(0 0 8px rgba(251, 146, 60, 0.6))',
+        animation: 'medalGlow 4s ease-in-out infinite'
+      }}
+    />
+    <div 
+      className="absolute inset-0 medal-shine rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"
+      style={{ pointerEvents: 'none' }}
+    ></div>
+  </div>
+)
 
 export default function SobrePage() {
   const features = [
     {
-      icon: Heart,
+      icon: HeartIcon,
       title: 'Feito com Amor',
       description: 'Cada salgado é preparado com carinho e ingredientes selecionados'
     },
     {
-      icon: Award,
+      icon: AwardIcon,
       title: 'Qualidade Premium',
       description: 'Reconhecidos como a melhor pastelaria da região há 5 anos consecutivos'
     },
     {
-      icon: Clock,
+      icon: ClockIcon,
       title: 'Sempre Fresquinho',
       description: 'Produção contínua durante todo o dia para garantir frescor'
     },
     {
-      icon: Users,
+      icon: UsersIcon,
       title: 'Tradição Familiar',
       description: 'Receitas passadas de geração em geração desde 1985'
     }
@@ -127,8 +161,8 @@ export default function SobrePage() {
             {features.map((feature, index) => (
               <Card key={index} className="text-center hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                 <CardContent className="p-10">
-                  <div className="w-20 h-20 bg-orange-200 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg">
-                    <feature.icon className="h-10 w-10 text-orange-700" />
+                  <div className="w-24 h-24 bg-orange-200 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg overflow-hidden relative">
+                    <feature.icon className="h-12 w-12 text-orange-700" />
                   </div>
                   <h3 className="font-bold text-2xl mb-4 text-gray-800">{feature.title}</h3>
                   <p className="text-gray-600 text-lg">{feature.description}</p>

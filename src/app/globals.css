@@ -150,3 +150,40 @@ header[class*="sticky"] {
 .leaflet-shadow-pane {
   z-index: 1 !important;
 }
+
+/* Animações para o ícone de medalha */
+@keyframes medalGlow {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(251, 146, 60, 0.6)) drop-shadow(0 0 4px rgba(251, 146, 60, 0.3));
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px rgba(251, 146, 60, 0.8)) drop-shadow(0 0 8px rgba(251, 146, 60, 0.5));
+    transform: scale(1.05) rotate(2deg);
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(251, 146, 60, 0.6)) drop-shadow(0 0 4px rgba(251, 146, 60, 0.3));
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes medalShine {
+  0% {
+    background-position: -100px;
+  }
+  100% {
+    background-position: 200px;
+  }
+}
+
+/* Efeito de brilho adicional para a medalha */
+.medal-shine {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  background-size: 200px 100%;
+  animation: medalShine 3s ease-in-out infinite;
+}
